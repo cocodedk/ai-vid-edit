@@ -256,3 +256,4 @@ downloads/
 static/uploads/
 media/
 *.zip
+uv.lock
