@@ -1,0 +1,14 @@
+---
+alwaysApply: true
+description: Core software principles for planning and development
+---
+
+# Software Development Principles
+
+**DRY**: Don't Repeat Yourself - Eliminate code duplication
+**KISS**: Keep It Simple, Stupid - Avoid unnecessary complexity
+**SOLID**: Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion
+**YAGNI**: You Aren't Gonna Need It - Build only what you need now
+**MVP**: Minimum Viable Product - Start with essential features
+
+Apply these principles in all planning and implementation decisions.

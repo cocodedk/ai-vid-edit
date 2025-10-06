@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+description: Keep files small and focused for better maintainability
+---
+
+# File Size Guidelines
+
+**Maximum Size**: Files must not exceed 100 lines
+**Logging Exclusion**: Logging statements don't count toward line limit
+**Principle**: Smaller files are better - keep them focused and maintainable
+**Rationale**: Large files are harder to understand, review, and maintain
