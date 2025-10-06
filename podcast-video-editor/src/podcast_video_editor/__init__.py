@@ -9,7 +9,8 @@ editing, and customizable intros/outros.
 __version__ = "0.1.0"
 __author__ = "Podcast Video Editor Team"
 
-from .cli_main import main
-from .web import create_app
+# Import main entry points only when needed to avoid loading heavy dependencies
+# from .cli_main import main
+# from .web import create_app
 
-__all__ = ["main", "create_app"]
+# __all__ = ["main", "create_app"]

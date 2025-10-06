@@ -17,7 +17,7 @@ from ..processor import VideoProcessor
 @click.option(
     "--output", "-o",
     type=click.Path(),
-    help="Output video file path"
+    help="Output file name (stored inside the run directory)"
 )
 @click.option(
     "--config", "-c",
@@ -29,6 +29,18 @@ from ..processor import VideoProcessor
     type=click.Choice(["tiny", "base", "small", "medium", "large"]),
     default="base",
     help="Whisper model size to use"
+)
+@click.option(
+    "--language",
+    type=str,
+    default=None,
+    help="Language code for transcription (e.g., 'en', 'es', 'fr'). Leave empty for auto-detection"
+)
+@click.option(
+    "--device",
+    type=click.Choice(["auto", "cpu", "cuda"]),
+    default="auto",
+    help="Select processing device (auto chooses CUDA when available)"
 )
 @click.option(
     "--silence-threshold",
@@ -52,6 +64,8 @@ def process(
     output: Optional[str],
     config: Optional[str],
     whisper_model: str,
+    language: Optional[str],
+    device: str,
     silence_threshold: float,
     min_silence_duration: float,
     verbose: bool
@@ -67,19 +81,29 @@ def process(
 
         # Override config with command line options
         config_obj.whisper.model = whisper_model
+        if language is not None:
+            config_obj.whisper.language = language
+        config_obj.whisper.device = device
         config_obj.silence_detection.threshold_db = silence_threshold
         config_obj.silence_detection.min_duration_ms = int(min_silence_duration * 1000)
 
-        # Determine output path
-        if not output:
-            input_path = Path(input_video)
-            output = str(input_path.with_stem(f"{input_path.stem}_edited"))
+        input_path = Path(input_video)
+        run_directory = VideoProcessor.create_run_directory(input_path)
 
-        # Create processor and run
-        processor = VideoProcessor(config_obj, verbose=verbose)
-        result_path = processor.process_video(input_video, output)
+        # Determine output path inside run directory
+        if output:
+            output_name = Path(output).name
+        else:
+            output_name = input_path.with_stem(f"{input_path.stem}_edited").name
+
+        output_path = run_directory / output_name
+
+        # Create processor and run (using context manager for temp directory management)
+        with VideoProcessor(config_obj, verbose=verbose, run_directory=run_directory) as processor:
+            result_path = processor.process_video(input_video, str(output_path))
 
         click.echo(f"✅ Processing completed! Output saved to: {result_path}")
+        click.echo(f"📂 Run directory: {run_directory}")
 
     except Exception as e:
         click.echo(f"❌ Error processing video: {e}", err=True)

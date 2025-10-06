@@ -7,10 +7,14 @@ import sys
 from pathlib import Path
 
 import click
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
+# Load environment variables (optional dependency)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # dotenv not available, continue without it
+    pass
 
 
 @click.group()

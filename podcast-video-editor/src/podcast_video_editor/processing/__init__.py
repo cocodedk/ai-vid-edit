@@ -2,7 +2,7 @@
 Video processing modules
 """
 
-from .models import SilencePeriod, VideoAnalysis
+from .models import SilencePeriod, VideoAnalysis, TranscriptSegment
 from .audio_processing import AudioProcessor
 from .video_processing import VideoProcessor as VideoSegmentProcessor
 from .silence_detection import SilenceDetector
@@ -14,6 +14,7 @@ from .video_concatenator import VideoConcatenator
 __all__ = [
     "SilencePeriod",
     "VideoAnalysis",
+    "TranscriptSegment",
     "AudioProcessor",
     "VideoSegmentProcessor",
     "SilenceDetector",

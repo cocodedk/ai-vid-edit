@@ -25,6 +25,7 @@ packages = ["src/podcast_video_editor"]
 
 [project.scripts]
 podcast-editor = "podcast_video_editor.cli_main:main"
+podcast-editor-web = "podcast_video_editor.web:main"
 
 [project.optional-dependencies]
 dev = [
