@@ -1,0 +1,21 @@
+{
+  "whisper": {
+    "model": "base",
+    "language": "en",
+    "device": "auto"
+  },
+  "silence_detection": {
+    "threshold_db": -40.0,
+    "min_duration_ms": 500
+  },
+  "transitions": {
+    "type": "crossfade",
+    "duration_ms": 500
+  },
+  "output": {
+    "format": "mp4",
+    "quality": "high",
+    "include_intro": true,
+    "include_outro": true
+  }
+}
