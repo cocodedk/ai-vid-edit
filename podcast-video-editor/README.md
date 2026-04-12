@@ -33,6 +33,7 @@ That's it! The AI will automatically remove silences and create a polished video
 - **Progress Reporting**: Real-time processing status and time estimates
 - **Web Interface**: Upload and process videos through a user-friendly web app
 - **CLI & GUI**: Choose between command-line efficiency or visual interface
+- **Adaptive Diagnostics**: Wizard can scan your file and hardware to suggest optimal processing defaults
 
 ## 📦 Installation
 
@@ -98,6 +99,16 @@ podcast-editor preview my_podcast.mp4
 # Preview with your custom settings
 podcast-editor preview input.mp4 --config my_settings.json
 ```
+
+### Diagnostic Recommendations
+
+When you run the interactive wizard (`./ai-video-editor.sh`), you can launch a diagnostic scan right after selecting your video. The tool inspects duration, file size, and GPU availability to recommend:
+
+- The most suitable Whisper model for the workload
+- Whether to stick with CPU or enable GPU acceleration
+- Baseline silence detection thresholds tailored to clip length
+
+Those suggestions feed into later prompts—for example, choosing the *Balanced* quality option will adopt the diagnostic model automatically, and the GPU prompt highlights the recommended device.
 
 ### Method 2: Web Interface (User-Friendly)
 

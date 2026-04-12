@@ -104,6 +104,24 @@ generate_command() {
     echo "  • --verbose - Show detailed progress information"
     echo ""
 
+    if [[ "$DIAGNOSTIC_RAN" == "true" ]]; then
+        local diag_flags=""
+        if [[ -n "$DIAGNOSTIC_THRESHOLD" ]]; then
+            diag_flags="--silence-threshold $DIAGNOSTIC_THRESHOLD"
+        fi
+        if [[ -n "$DIAGNOSTIC_SILENCE_DURATION" ]]; then
+            if [[ -n "$diag_flags" ]]; then
+                diag_flags+=" "
+            fi
+            diag_flags+="--min-silence-duration $DIAGNOSTIC_SILENCE_DURATION"
+        fi
+
+        if [[ -n "$diag_flags" ]]; then
+            print_info "Diagnostics suggested adding: $diag_flags"
+            echo ""
+        fi
+    fi
+
     read -p "Run this command now? (y/n): " run_now
 
     if [[ "$run_now" =~ ^[Yy]$ ]]; then

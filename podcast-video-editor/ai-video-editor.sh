@@ -47,6 +47,7 @@ source "$SCRIPT_DIR/helpers/utils.sh"
 source "$SCRIPT_DIR/helpers/environment.sh"
 source "$SCRIPT_DIR/helpers/video_file.sh"
 source "$SCRIPT_DIR/helpers/video_settings.sh"
+source "$SCRIPT_DIR/helpers/diagnostic.sh"
 source "$SCRIPT_DIR/helpers/language_settings.sh"
 source "$SCRIPT_DIR/helpers/quality_settings.sh"
 source "$SCRIPT_DIR/helpers/output_settings.sh"
@@ -62,6 +63,7 @@ main() {
     check_environment
     get_video_file
     get_video_type
+    run_diagnostics
     get_language
     get_quality_preferences
     get_gpu_settings
@@ -72,6 +74,7 @@ main() {
     print_success "Setup complete! Your video is ready for AI-powered editing."
     echo ""
     echo "Tips for best results:"
+    echo "• Run diagnostics when prompted to tailor model and device"
     echo "• Use --verbose for detailed progress information"
     echo "• Try preview mode first: podcast-editor preview video.mp4"
     echo "• For long videos, consider using a larger Whisper model"
