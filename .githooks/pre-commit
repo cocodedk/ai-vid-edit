@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+cd podcast-video-editor
+uv run ruff check . && uv run pytest --tb=short -q || true
