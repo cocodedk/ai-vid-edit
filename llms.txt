@@ -1,0 +1,25 @@
+# ai-vid-edit
+
+> An AI-powered Python tool for editing podcast and interview videos with scene detection, transcription, and intelligent processing.
+
+## Links
+
+- GitHub: https://github.com/cocodedk/ai-vid-edit
+- Website (EN): https://cocodedk.github.io/ai-vid-edit/
+- Website (FA): https://cocodedk.github.io/ai-vid-edit/fa/
+- Download: https://github.com/cocodedk/ai-vid-edit/releases/latest/download/ai-vid-edit.zip
+- Author: https://cocode.dk
+- LinkedIn: https://linkedin.com/in/babakbandpey
+
+## Technical Details
+
+- Language: Python 3.12
+- Package manager: uv
+- Architecture: Flask web app + CLI video processing pipeline
+- License: Apache-2.0
+
+## Key Files
+
+- `podcast-video-editor/src/podcast_video_editor/` — Core package
+- `podcast-video-editor/helpers/` — Shell helper scripts
+- `CLAUDE.md` — AI session instructions
